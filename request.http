@@ -1,0 +1,115 @@
+### Crear miembro 1
+POST http://localhost:8081/api/members
+Content-Type: application/json
+
+{
+  "name": "Juan Pérez",
+  "email": "juan@example.com",
+  "age": 30
+}
+
+### Crear miembro 2
+POST http://localhost:8081/api/members
+Content-Type: application/json
+
+{
+  "name": "María García",
+  "email": "maria@example.com",
+  "age": 25
+}
+
+### Crear miembro 3
+POST http://localhost:8081/api/members
+Content-Type: application/json
+
+{
+  "name": "Carlos López",
+  "email": "carlos@example.com",
+  "age": 35
+}
+
+### Obtener todos los miembros
+GET http://localhost:8081/api/members
+
+### Obtener miembro por ID
+GET http://localhost:8081/api/members/1
+
+### Obtener miembro por ID (2)
+GET http://localhost:8081/api/members/2
+
+### Obtener miembro por ID (3)
+GET http://localhost:8081/api/members/3
+
+### Obtener miembro inexistente (debe devolver 404)
+GET http://localhost:8081/api/members/999
+
+// CLAIM SERVICE - Port 8081
+### Crear claim 1
+POST http://localhost:8083/api/claims
+Content-Type: application/json
+
+{
+  "policyId": 1,
+  "amount": 1500.50,
+  "status": "PENDING"
+}
+
+### Crear claim 2
+POST http://localhost:8083/api/claims
+Content-Type: application/json
+
+{
+  "policyId": 2,
+  "amount": 3000.00,
+  "status": "PENDING"
+}
+
+### Obtener todos los claims
+GET http://localhost:8083/api/claims
+
+### Obtener claim por ID
+GET http://localhost:8083/api/claims/1
+
+### Actualizar status del claim
+PUT http://localhost:8083/api/claims/1/status
+Content-Type: application/json
+
+{
+  "status": "APPROVED"
+}
+
+### Actualizar status a REJECTED
+PUT http://localhost:8083/api/claims/2/status
+Content-Type: application/json
+
+{
+  "status": "REJECTED"
+}
+
+// A TRAVES DEL API GATEWAY - Port 8080
+
+### Crear miembro via Gateway
+POST http://localhost:8080/api/members
+Content-Type: application/json
+
+{
+  "name": "Test Gateway",
+  "email": "gateway@example.com",
+  "age": 40
+}
+
+### Obtener miembros via Gateway
+GET http://localhost:8080/api/members
+
+### Crear claim via Gateway
+POST http://localhost:8080/api/claims
+Content-Type: application/json
+
+{
+  "policyId": 100,
+  "amount": 5000.00,
+  "status": "PENDING"
+}
+
+### Obtener claims via Gateway
+GET http://localhost:8080/api/claims
