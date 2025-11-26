@@ -113,3 +113,18 @@ Content-Type: application/json
 
 ### Obtener claims via Gateway
 GET http://localhost:8080/api/claims
+
+### Verificar config de member-service
+GET http://localhost:8081/api/config
+
+### Verificar config de claim-service
+GET http://localhost:8083/api/config
+
+### Ver configuracion raw del Config Server Member
+GET http://localhost:8888/member-service/default
+
+### Ver configuracion raw del Config Server Claim
+GET http://localhost:8888/claim-service/default
+
+### Ver configuracion raw del Config Server Gateway
+GET http://localhost:8888/api-gateway/default
