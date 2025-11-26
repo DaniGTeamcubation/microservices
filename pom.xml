@@ -32,6 +32,7 @@
         <module>discovery-service</module>
         <module>member-service</module>
         <module>config-service</module>
+        <module>notification-service</module>
     </modules>
 
     <dependencyManagement>
