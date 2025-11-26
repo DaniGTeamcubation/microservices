@@ -128,3 +128,31 @@ GET http://localhost:8888/claim-service/default
 
 ### Ver configuracion raw del Config Server Gateway
 GET http://localhost:8888/api-gateway/default
+
+// ASYNC COMMUNICATION TEST
+
+### 1. Crear un claim (debe disparar notificacion)
+POST http://localhost:8083/api/claims
+Content-Type: application/json
+
+{
+  "policyId": 100,
+  "amount": 5000.00,
+  "status": "PENDING"
+}
+
+### 2. Cambiar status del claim (debe disparar notificacion)
+PUT http://localhost:8083/api/claims/1/status
+Content-Type: application/json
+
+{
+  "status": "APPROVED"
+}
+
+### 3. Cambiar a otro status
+PUT http://localhost:8083/api/claims/1/status
+Content-Type: application/json
+
+{
+  "status": "PAID"
+}
