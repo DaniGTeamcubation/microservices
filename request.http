@@ -156,3 +156,55 @@ Content-Type: application/json
 {
   "status": "PAID"
 }
+
+// FILE UPLOAD TEST
+
+### 1. Upload file directo al document-service
+POST http://localhost:8085/api/documents/upload
+Content-Type: multipart/form-data; boundary=boundary
+
+--boundary
+Content-Disposition: form-data; name="file"; filename="test.txt"
+Content-Type: text/plain
+
+Este es un archivo de prueba
+--boundary
+Content-Disposition: form-data; name="claimId"
+
+1
+--boundary--
+
+### 2. Listar todos los documentos
+GET http://localhost:8085/api/documents
+
+### 3. Descargar documento por ID
+GET http://localhost:8085/api/documents/1/download
+
+### 4. Upload file a traves de claim-service (integracion)
+POST http://localhost:8083/api/claims/1/documents/upload
+Content-Type: multipart/form-data; boundary=boundary
+
+--boundary
+Content-Disposition: form-data; name="file"; filename="claim-document.pdf"
+Content-Type: application/pdf
+
+Contenido del PDF aqui
+--boundary--
+
+### 5. Obtener documentos de un claim especifico
+GET http://localhost:8083/api/claims/1/documents
+
+### 6. Via Gateway - Upload file
+POST http://localhost:8080/api/documents/upload
+Content-Type: multipart/form-data; boundary=boundary
+
+--boundary
+Content-Disposition: form-data; name="file"; filename="gateway-test.txt"
+Content-Type: text/plain
+
+Archivo subido via gateway
+--boundary
+Content-Disposition: form-data; name="claimId"
+
+2
+--boundary--
