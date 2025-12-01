@@ -25,12 +25,11 @@ public class DocumentController {
         this.documentService = documentService;
     }
 
-    @PostMapping("/upload")
+    @PostMapping(value = "/upload", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<Document> uploadFile(
-            @RequestParam("file") MultipartFile file,
-            @RequestParam(value = "claimId", required = false) Long claimId) {
-
-        log.info("Uploading file: {}, size: {} bytes", file.getOriginalFilename(), file.getSize());
+            @RequestPart("file") MultipartFile file,
+            @RequestParam(value = "claimId", required = false) Long claimId,
+            HttpServletRequest request) {
         Document document = documentService.uploadFile(file, claimId);
         return new ResponseEntity<>(document, HttpStatus.CREATED);
     }
