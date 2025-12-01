@@ -33,6 +33,7 @@
         <module>member-service</module>
         <module>config-service</module>
         <module>notification-service</module>
+        <module>document-service</module>
     </modules>
 
     <dependencyManagement>
