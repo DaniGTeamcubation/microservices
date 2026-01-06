@@ -20,7 +20,7 @@ public class Document {
     private String filename;
     private String fileType;
     private LocalDateTime uploadDate;
-    private String filePath;
+    private String s3Key;
     private Long fileSize;
 
     private Long claimId;
