@@ -1,0 +1,455 @@
+Listado de rutas de carpetas
+El número de serie del volumen es B028-86FA
+C:.
+¦   .gitignore
+¦   estructura.txt
+¦   pom.xml
+¦   request.http
+¦   
++---.idea
+¦       .gitignore
+¦       checkstyle-idea.xml
+¦       compiler.xml
+¦       encodings.xml
+¦       jarRepositories.xml
+¦       misc.xml
+¦       vcs.xml
+¦       workspace.xml
+¦       
++---api-gateway
+¦   ¦   .gitignore
+¦   ¦   api-gateway.iml
+¦   ¦   pom.xml
+¦   ¦   
+¦   +---src
+¦   ¦   +---main
+¦   ¦       +---java
+¦   ¦       ¦   +---com
+¦   ¦       ¦       +---microservice
+¦   ¦       ¦               ApiGatewayApplication.java
+¦   ¦       ¦               
+¦   ¦       +---resources
+¦   ¦               application.properties.backup
+¦   ¦               bootstrap.properties
+¦   ¦               
+¦   +---target
+¦       ¦   api-gateway-1.0.0.jar
+¦       ¦   api-gateway-1.0.0.jar.original
+¦       ¦   
+¦       +---classes
+¦       ¦   ¦   application.properties.backup
+¦       ¦   ¦   bootstrap.properties
+¦       ¦   ¦   
+¦       ¦   +---com
+¦       ¦       +---microservice
+¦       ¦               ApiGatewayApplication.class
+¦       ¦               
+¦       +---generated-sources
+¦       ¦   +---annotations
+¦       +---maven-archiver
+¦       ¦       pom.properties
+¦       ¦       
+¦       +---maven-status
+¦           +---maven-compiler-plugin
+¦               +---compile
+¦                   +---default-compile
+¦                           createdFiles.lst
+¦                           inputFiles.lst
+¦                           
++---claim-service
+¦   ¦   .gitignore
+¦   ¦   pom.xml
+¦   ¦   
+¦   +---src
+¦   ¦   +---main
+¦   ¦       +---java
+¦   ¦       ¦   +---com
+¦   ¦       ¦       +---microservice
+¦   ¦       ¦           ¦   ClaimServiceApplication.java
+¦   ¦       ¦           ¦   
+¦   ¦       ¦           +---client
+¦   ¦       ¦           ¦       DocumentClient.java
+¦   ¦       ¦           ¦       
+¦   ¦       ¦           +---config
+¦   ¦       ¦           ¦       RabbitMQConfig.java
+¦   ¦       ¦           ¦       RestTemplateConfig.java
+¦   ¦       ¦           ¦       
+¦   ¦       ¦           +---controller
+¦   ¦       ¦           ¦       ClaimController.java
+¦   ¦       ¦           ¦       ConfigController.java
+¦   ¦       ¦           ¦       TestController.java
+¦   ¦       ¦           ¦       
+¦   ¦       ¦           +---dto
+¦   ¦       ¦           ¦       ClaimCreatedEvent.java
+¦   ¦       ¦           ¦       ClaimStatusChangedEvent.java
+¦   ¦       ¦           ¦       
+¦   ¦       ¦           +---entity
+¦   ¦       ¦           ¦       Claim.java
+¦   ¦       ¦           ¦       
+¦   ¦       ¦           +---publisher
+¦   ¦       ¦           ¦       ClaimEventPublisher.java
+¦   ¦       ¦           ¦       
+¦   ¦       ¦           +---repository
+¦   ¦       ¦           ¦       ClaimRepository.java
+¦   ¦       ¦           ¦       
+¦   ¦       ¦           +---service
+¦   ¦       ¦                   ClaimService.java
+¦   ¦       ¦                   
+¦   ¦       +---resources
+¦   ¦               application.properties.backup
+¦   ¦               bootstrap.properties
+¦   ¦               
+¦   +---target
+¦       ¦   claim-service-1.0.0.jar
+¦       ¦   claim-service-1.0.0.jar.original
+¦       ¦   
+¦       +---classes
+¦       ¦   ¦   application.properties.backup
+¦       ¦   ¦   bootstrap.properties
+¦       ¦   ¦   
+¦       ¦   +---com
+¦       ¦       +---microservice
+¦       ¦           ¦   ClaimServiceApplication.class
+¦       ¦           ¦   
+¦       ¦           +---client
+¦       ¦           ¦       DocumentClient.class
+¦       ¦           ¦       
+¦       ¦           +---config
+¦       ¦           ¦       RabbitMQConfig.class
+¦       ¦           ¦       RestTemplateConfig.class
+¦       ¦           ¦       
+¦       ¦           +---controller
+¦       ¦           ¦       ClaimController.class
+¦       ¦           ¦       ConfigController.class
+¦       ¦           ¦       TestController.class
+¦       ¦           ¦       
+¦       ¦           +---dto
+¦       ¦           ¦       ClaimCreatedEvent.class
+¦       ¦           ¦       ClaimStatusChangedEvent.class
+¦       ¦           ¦       
+¦       ¦           +---entity
+¦       ¦           ¦       Claim.class
+¦       ¦           ¦       
+¦       ¦           +---publisher
+¦       ¦           ¦       ClaimEventPublisher.class
+¦       ¦           ¦       
+¦       ¦           +---repository
+¦       ¦           ¦       ClaimRepository.class
+¦       ¦           ¦       
+¦       ¦           +---service
+¦       ¦                   ClaimService.class
+¦       ¦                   
+¦       +---generated-sources
+¦       ¦   +---annotations
+¦       +---maven-archiver
+¦       ¦       pom.properties
+¦       ¦       
+¦       +---maven-status
+¦           +---maven-compiler-plugin
+¦               +---compile
+¦                   +---default-compile
+¦                           createdFiles.lst
+¦                           inputFiles.lst
+¦                           
++---config-service
+¦   ¦   .gitignore
+¦   ¦   pom.xml
+¦   ¦   
+¦   +---src
+¦   ¦   +---main
+¦   ¦       +---java
+¦   ¦       ¦   +---com
+¦   ¦       ¦       +---microservice
+¦   ¦       ¦               ConfigServiceApplication.java
+¦   ¦       ¦               
+¦   ¦       +---resources
+¦   ¦               application.properties
+¦   ¦               
+¦   +---target
+¦       ¦   config-service-1.0.0.jar
+¦       ¦   config-service-1.0.0.jar.original
+¦       ¦   
+¦       +---classes
+¦       ¦   ¦   application.properties
+¦       ¦   ¦   
+¦       ¦   +---com
+¦       ¦       +---microservice
+¦       ¦               ConfigServiceApplication.class
+¦       ¦               
+¦       +---generated-sources
+¦       ¦   +---annotations
+¦       +---maven-archiver
+¦       ¦       pom.properties
+¦       ¦       
+¦       +---maven-status
+¦           +---maven-compiler-plugin
+¦               +---compile
+¦                   +---default-compile
+¦                           createdFiles.lst
+¦                           inputFiles.lst
+¦                           
++---discovery-service
+¦   ¦   .gitignore
+¦   ¦   pom.xml
+¦   ¦   
+¦   +---src
+¦   ¦   +---main
+¦   ¦       +---java
+¦   ¦       ¦   +---com
+¦   ¦       ¦       +---microservice
+¦   ¦       ¦               DiscoveryServiceApplication.java
+¦   ¦       ¦               
+¦   ¦       +---resources
+¦   ¦               application.properties.backup
+¦   ¦               bootstrap.properties
+¦   ¦               
+¦   +---target
+¦       ¦   discovery-service-1.0.0.jar
+¦       ¦   discovery-service-1.0.0.jar.original
+¦       ¦   
+¦       +---classes
+¦       ¦   ¦   application.properties.backup
+¦       ¦   ¦   bootstrap.properties
+¦       ¦   ¦   
+¦       ¦   +---com
+¦       ¦       +---microservice
+¦       ¦               DiscoveryServiceApplication.class
+¦       ¦               
+¦       +---generated-sources
+¦       ¦   +---annotations
+¦       +---maven-archiver
+¦       ¦       pom.properties
+¦       ¦       
+¦       +---maven-status
+¦           +---maven-compiler-plugin
+¦               +---compile
+¦                   +---default-compile
+¦                           createdFiles.lst
+¦                           inputFiles.lst
+¦                           
++---document-service
+¦   ¦   .gitignore
+¦   ¦   document-service.iml
+¦   ¦   pom.xml
+¦   ¦   
+¦   +---src
+¦   ¦   +---main
+¦   ¦       +---java
+¦   ¦       ¦   +---com
+¦   ¦       ¦       +---microservice
+¦   ¦       ¦           ¦   DocumentServiceApplication.java
+¦   ¦       ¦           ¦   
+¦   ¦       ¦           +---document
+¦   ¦       ¦               +---config
+¦   ¦       ¦               ¦       MultipartConfig.java
+¦   ¦       ¦               ¦       S3BucketInitializer.java
+¦   ¦       ¦               ¦       S3Config.java
+¦   ¦       ¦               ¦       
+¦   ¦       ¦               +---controller
+¦   ¦       ¦               ¦       DocumentController.java
+¦   ¦       ¦               ¦       
+¦   ¦       ¦               +---entity
+¦   ¦       ¦               ¦       Document.java
+¦   ¦       ¦               ¦       
+¦   ¦       ¦               +---exception
+¦   ¦       ¦               ¦       DocumentNotFoundException.java
+¦   ¦       ¦               ¦       FileStorageException.java
+¦   ¦       ¦               ¦       
+¦   ¦       ¦               +---repository
+¦   ¦       ¦               ¦       DocumentRepository.java
+¦   ¦       ¦               ¦       
+¦   ¦       ¦               +---service
+¦   ¦       ¦               ¦       DocumentService.java
+¦   ¦       ¦               ¦       
+¦   ¦       ¦               +---util
+¦   ¦       ¦                       DocumentCategory.java
+¦   ¦       ¦                       
+¦   ¦       +---resources
+¦   ¦               bootstrap-local.properties
+¦   ¦               bootstrap.properties
+¦   ¦               
+¦   +---target
+¦       ¦   document-service-1.0.0.jar
+¦       ¦   document-service-1.0.0.jar.original
+¦       ¦   
+¦       +---classes
+¦       ¦   ¦   bootstrap-local.properties
+¦       ¦   ¦   bootstrap.properties
+¦       ¦   ¦   
+¦       ¦   +---com
+¦       ¦       +---microservice
+¦       ¦           ¦   DocumentServiceApplication.class
+¦       ¦           ¦   
+¦       ¦           +---document
+¦       ¦               +---config
+¦       ¦               ¦       MultipartConfig.class
+¦       ¦               ¦       S3BucketInitializer.class
+¦       ¦               ¦       S3Config.class
+¦       ¦               ¦       
+¦       ¦               +---controller
+¦       ¦               ¦       DocumentController.class
+¦       ¦               ¦       
+¦       ¦               +---entity
+¦       ¦               ¦       Document.class
+¦       ¦               ¦       
+¦       ¦               +---exception
+¦       ¦               ¦       DocumentNotFoundException.class
+¦       ¦               ¦       FileStorageException.class
+¦       ¦               ¦       
+¦       ¦               +---repository
+¦       ¦               ¦       DocumentRepository.class
+¦       ¦               ¦       
+¦       ¦               +---service
+¦       ¦               ¦       DocumentService.class
+¦       ¦               ¦       
+¦       ¦               +---util
+¦       ¦                       DocumentCategory.class
+¦       ¦                       
+¦       +---generated-sources
+¦       ¦   +---annotations
+¦       +---maven-archiver
+¦       ¦       pom.properties
+¦       ¦       
+¦       +---maven-status
+¦           +---maven-compiler-plugin
+¦               +---compile
+¦                   +---default-compile
+¦                           createdFiles.lst
+¦                           inputFiles.lst
+¦                           
++---member-service
+¦   ¦   .gitignore
+¦   ¦   pom.xml
+¦   ¦   
+¦   +---src
+¦   ¦   +---main
+¦   ¦       +---java
+¦   ¦       ¦   +---com
+¦   ¦       ¦       +---microservice
+¦   ¦       ¦           ¦   MemberServiceApplication.java
+¦   ¦       ¦           ¦   
+¦   ¦       ¦           +---controller
+¦   ¦       ¦           ¦       ConfigController.java
+¦   ¦       ¦           ¦       MemberController.java
+¦   ¦       ¦           ¦       TestController.java
+¦   ¦       ¦           ¦       
+¦   ¦       ¦           +---entity
+¦   ¦       ¦           ¦       Member.java
+¦   ¦       ¦           ¦       
+¦   ¦       ¦           +---repository
+¦   ¦       ¦           ¦       MemberRepository.java
+¦   ¦       ¦           ¦       
+¦   ¦       ¦           +---service
+¦   ¦       ¦                   MemberService.java
+¦   ¦       ¦                   
+¦   ¦       +---resources
+¦   ¦               application.properties.backup
+¦   ¦               bootstrap.properties
+¦   ¦               
+¦   +---target
+¦       ¦   member-service-1.0.0.jar
+¦       ¦   
+¦       +---classes
+¦       ¦   ¦   application.properties.backup
+¦       ¦   ¦   bootstrap.properties
+¦       ¦   ¦   
+¦       ¦   +---com
+¦       ¦       +---microservice
+¦       ¦           ¦   MemberServiceApplication.class
+¦       ¦           ¦   
+¦       ¦           +---controller
+¦       ¦           ¦       ConfigController.class
+¦       ¦           ¦       MemberController.class
+¦       ¦           ¦       TestController.class
+¦       ¦           ¦       
+¦       ¦           +---entity
+¦       ¦           ¦       Member.class
+¦       ¦           ¦       
+¦       ¦           +---repository
+¦       ¦           ¦       MemberRepository.class
+¦       ¦           ¦       
+¦       ¦           +---service
+¦       ¦                   MemberService.class
+¦       ¦                   
+¦       +---generated-sources
+¦       ¦   +---annotations
+¦       +---maven-archiver
+¦       ¦       pom.properties
+¦       ¦       
+¦       +---maven-status
+¦           +---maven-compiler-plugin
+¦               +---compile
+¦                   +---default-compile
+¦                           createdFiles.lst
+¦                           inputFiles.lst
+¦                           
++---notification-service
+¦   ¦   .gitignore
+¦   ¦   pom.xml
+¦   ¦   
+¦   +---src
+¦   ¦   +---main
+¦   ¦       +---java
+¦   ¦       ¦   +---com
+¦   ¦       ¦       +---microservice
+¦   ¦       ¦           +---notification
+¦   ¦       ¦               ¦   NotificationServiceApplication.java
+¦   ¦       ¦               ¦   
+¦   ¦       ¦               +---config
+¦   ¦       ¦               ¦       RabbitMQConfig.java
+¦   ¦       ¦               ¦       
+¦   ¦       ¦               +---dto
+¦   ¦       ¦               ¦       ClaimCreatedEvent.java
+¦   ¦       ¦               ¦       ClaimStatusChangedEvent.java
+¦   ¦       ¦               ¦       
+¦   ¦       ¦               +---listener
+¦   ¦       ¦               ¦       ClaimEventListener.java
+¦   ¦       ¦               ¦       
+¦   ¦       ¦               +---service
+¦   ¦       ¦                       NotificationService.java
+¦   ¦       ¦                       
+¦   ¦       +---resources
+¦   ¦               bootstrap.properties
+¦   ¦               
+¦   +---target
+¦       ¦   notification-service-1.0.0.jar
+¦       ¦   notification-service-1.0.0.jar.original
+¦       ¦   
+¦       +---classes
+¦       ¦   ¦   bootstrap.properties
+¦       ¦   ¦   
+¦       ¦   +---com
+¦       ¦       +---microservice
+¦       ¦           +---notification
+¦       ¦               ¦   NotificationServiceApplication.class
+¦       ¦               ¦   
+¦       ¦               +---config
+¦       ¦               ¦       RabbitMQConfig.class
+¦       ¦               ¦       
+¦       ¦               +---dto
+¦       ¦               ¦       ClaimCreatedEvent.class
+¦       ¦               ¦       ClaimStatusChangedEvent.class
+¦       ¦               ¦       
+¦       ¦               +---listener
+¦       ¦               ¦       ClaimEventListener.class
+¦       ¦               ¦       
+¦       ¦               +---service
+¦       ¦                       NotificationService.class
+¦       ¦                       
+¦       +---generated-sources
+¦       ¦   +---annotations
+¦       +---maven-archiver
+¦       ¦       pom.properties
+¦       ¦       
+¦       +---maven-status
+¦           +---maven-compiler-plugin
+¦               +---compile
+¦                   +---default-compile
+¦                           createdFiles.lst
+¦                           inputFiles.lst
+¦                           
++---uploads
+        463ee0d3-7a4a-4f3d-8360-20627869c6bc_test.txt
+        6279abfa-e4d2-453a-99b7-9498c21439e0_gateway-test.txt
+        e2659d36-2585-4365-8726-6948b23eb687_claim-document.pdf
+        

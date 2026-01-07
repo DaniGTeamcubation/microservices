@@ -4,114 +4,162 @@ import com.microservice.document.entity.Document;
 import com.microservice.document.exception.DocumentNotFoundException;
 import com.microservice.document.exception.FileStorageException;
 import com.microservice.document.repository.DocumentRepository;
+import com.microservice.document.util.DocumentCategory;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.core.io.Resource;
-import org.springframework.core.io.UrlResource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
+import software.amazon.awssdk.core.ResponseBytes;
+import software.amazon.awssdk.core.sync.RequestBody;
+import software.amazon.awssdk.services.s3.S3Client;
+import software.amazon.awssdk.services.s3.model.*;
+import software.amazon.awssdk.services.s3.presigner.S3Presigner;
+import software.amazon.awssdk.services.s3.presigner.model.GetObjectPresignRequest;
+import software.amazon.awssdk.services.s3.presigner.model.PresignedGetObjectRequest;
 
-import java.io.IOException;
-import java.net.MalformedURLException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
+import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Objects;
 import java.util.UUID;
 
 @Service
+@RequiredArgsConstructor
 @Slf4j
 public class DocumentService {
 
-    @Autowired
-    private DocumentRepository documentRepository;
+    private final DocumentRepository documentRepository;
+    private final S3Client s3Client;
+    private final S3Presigner s3Presigner;
 
-    @Value("${file.upload-dir:uploads}")
-    private String uploadDir;
+    @Value("${aws.s3.bucket}")
+    private String bucketName;
 
-    private Path fileStorageLocation;
-
-    public void init() {
-        try {
-            this.fileStorageLocation = Paths.get(uploadDir).toAbsolutePath().normalize();
-            Files.createDirectories(this.fileStorageLocation);
-            log.info("File storage location initialized: {}", this.fileStorageLocation);
-        } catch (Exception ex) {
-            throw new FileStorageException("Could not create the directory where the uploaded files will be stored.", ex);
-        }
-    }
-
-    public Document uploadFile(MultipartFile file, Long claimId) {
-        if (fileStorageLocation == null) {
-            init();
-        }
-
-        String originalFilename = StringUtils.cleanPath(Objects.requireNonNull(file.getOriginalFilename()));
+    public Document upload(MultipartFile file,
+                           DocumentCategory category,
+                           Long claimId) {
 
         try {
-            if (originalFilename.contains("..")) {
-                throw new FileStorageException("Filename contains invalid path sequence " + originalFilename);
-            }
+            String s3Key = buildS3Key(category, claimId, file.getOriginalFilename());
 
-            String filename = UUID.randomUUID() + "_" + originalFilename;
-            Path targetLocation = this.fileStorageLocation.resolve(filename);
-            Files.copy(file.getInputStream(), targetLocation, StandardCopyOption.REPLACE_EXISTING);
+            PutObjectRequest putObjectRequest = PutObjectRequest.builder()
+                    .bucket(bucketName)
+                    .key(s3Key)
+                    .contentType(file.getContentType())
+                    .contentLength(file.getSize())
+                    .build();
+
+            s3Client.putObject(
+                    putObjectRequest,
+                    RequestBody.fromInputStream(file.getInputStream(), file.getSize())
+            );
 
             Document document = new Document();
-            document.setFilename(originalFilename);
+            document.setFilename(file.getOriginalFilename());
             document.setFileType(file.getContentType());
-            document.setUploadDate(LocalDateTime.now());
-            document.setFilePath(filename);
             document.setFileSize(file.getSize());
+            document.setUploadDate(LocalDateTime.now());
+            document.setS3Key(s3Key);
             document.setClaimId(claimId);
 
-            Document savedDocument = documentRepository.save(document);
-            log.info("File uploaded successfully: {} (ID: {})", originalFilename, savedDocument.getId());
+            Document saved = documentRepository.save(document);
 
-            return savedDocument;
+            log.info("File uploaded to S3. bucket={}, key={}", bucketName, s3Key);
+            return saved;
 
-        } catch (IOException ex) {
-            throw new FileStorageException("Could not store file " + originalFilename + ". Please try again!", ex);
+        } catch (Exception e) {
+            log.error("Error uploading file to S3", e);
+            throw new FileStorageException("Could not upload file to S3", e);
         }
     }
 
-    public Resource loadFileAsResource(Long documentId) {
-        Document document = documentRepository.findById(documentId)
-                .orElseThrow(() -> new DocumentNotFoundException("Document not found with id: " + documentId));
 
+    public ResponseEntity<byte[]> download(String key) {
         try {
-            if (fileStorageLocation == null) {
-                init();
-            }
+            GetObjectRequest getObjectRequest = GetObjectRequest.builder()
+                    .bucket(bucketName)
+                    .key(key)
+                    .build();
 
-            Path filePath = this.fileStorageLocation.resolve(document.getFilePath()).normalize();
-            Resource resource = new UrlResource(filePath.toUri());
+            ResponseBytes<GetObjectResponse> objectBytes =
+                    s3Client.getObjectAsBytes(getObjectRequest);
 
-            if (resource.exists()) {
-                return resource;
-            } else {
-                throw new DocumentNotFoundException("File not found: " + document.getFilename());
-            }
-        } catch (MalformedURLException ex) {
-            throw new DocumentNotFoundException("File not found: " + document.getFilename());
+            return ResponseEntity.ok()
+                    .header(HttpHeaders.CONTENT_DISPOSITION,
+                            "attachment; filename=\"" + extractFilename(key) + "\"")
+                    .contentType(MediaType.APPLICATION_OCTET_STREAM)
+                    .body(objectBytes.asByteArray());
+
+        } catch (NoSuchKeyException e) {
+            throw new DocumentNotFoundException("File not found in S3: " + key);
         }
     }
 
-    public Document getDocumentById(Long id) {
-        return documentRepository.findById(id)
-                .orElseThrow(() -> new DocumentNotFoundException("Document not found with id: " + id));
+
+    public String generatePresignedUrl(String key) {
+
+        GetObjectRequest getObjectRequest = GetObjectRequest.builder()
+                .bucket(bucketName)
+                .key(key)
+                .build();
+
+        GetObjectPresignRequest presignRequest =
+                GetObjectPresignRequest.builder()
+                        .signatureDuration(Duration.ofMinutes(15))
+                        .getObjectRequest(getObjectRequest)
+                        .build();
+
+        PresignedGetObjectRequest presignedRequest =
+                s3Presigner.presignGetObject(presignRequest);
+
+        return presignedRequest.url().toString();
     }
 
-    public List<Document> getAllDocuments() {
+
+    private String buildS3Key(DocumentCategory category,
+                              Long claimId,
+                              String originalFilename) {
+
+        String uuid = UUID.randomUUID().toString();
+
+        if (claimId != null) {
+            return category.name().toLowerCase()
+                    + "/claim-" + claimId
+                    + "/" + uuid + "-" + originalFilename;
+        }
+
+        return category.name().toLowerCase()
+                + "/" + uuid + "-" + originalFilename;
+    }
+
+    private String extractFilename(String key) {
+        int index = key.lastIndexOf("/");
+        return index >= 0 ? key.substring(index + 1) : key;
+    }
+
+    public Document findById(Long id) {
+        return documentRepository.findById(id)
+                .orElseThrow(() -> new DocumentNotFoundException("Document not found: " + id));
+    }
+
+    public List<Document> findAll() {
         return documentRepository.findAll();
     }
 
-    public List<Document> getDocumentsByClaimId(Long claimId) {
+    public List<Document> findByClaimId(Long claimId) {
         return documentRepository.findByClaimId(claimId);
+    }
+
+    public ResponseEntity<byte[]> downloadById(Long id) {
+        Document document = findById(id);
+        return download(document.getS3Key());
+    }
+
+    public String generatePresignedUrlById(Long id) {
+        Document document = findById(id);
+        return generatePresignedUrl(document.getS3Key());
     }
 }

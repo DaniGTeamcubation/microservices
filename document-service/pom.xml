@@ -80,6 +80,17 @@
             <artifactId>zipkin-reporter-brave</artifactId>
         </dependency>
 
+        <!-- AWS S3 -->
+        <dependency>
+            <groupId>software.amazon.awssdk</groupId>
+            <artifactId>s3</artifactId>
+        </dependency>
+
+        <!-- AWS credentials (necesario para LocalStack) -->
+        <dependency>
+            <groupId>software.amazon.awssdk</groupId>
+            <artifactId>auth</artifactId>
+        </dependency>
     </dependencies>
 
     <build>
