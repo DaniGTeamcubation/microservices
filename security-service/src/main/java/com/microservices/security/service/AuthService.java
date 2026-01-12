@@ -45,12 +45,12 @@ public class AuthService {
         User user = userOpt.get();
         String token = jwtService.generateToken(user.getUsername(), user.getRole());
 
-        LoginResponse response = new LoginResponse(
-                token,
-                user.getUsername(),
-                user.getRole(),
-                jwtService.getExpirationTime()
-        );
+        LoginResponse response = LoginResponse.builder()
+                .token(token)
+                .username(user.getUsername())
+                .role(user.getRole())
+                .expiresIn(jwtService.getExpirationTime())
+                .build();
 
         log.info("Login successful for user: {} with role: {}", user.getUsername(), user.getRole());
         return Optional.of(response);
