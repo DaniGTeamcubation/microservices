@@ -153,6 +153,7 @@ C:.
 ¦                           
 +---config-service
 ¦   ¦   .gitignore
+¦   ¦   config-service.iml
 ¦   ¦   pom.xml
 ¦   ¦   
 ¦   +---src
@@ -265,7 +266,6 @@ C:.
 ¦   ¦       ¦                       DocumentCategory.java
 ¦   ¦       ¦                       
 ¦   ¦       +---resources
-¦   ¦               bootstrap-local.properties
 ¦   ¦               bootstrap.properties
 ¦   ¦               
 ¦   +---target
@@ -273,7 +273,6 @@ C:.
 ¦       ¦   document-service-1.0.0.jar.original
 ¦       ¦   
 ¦       +---classes
-¦       ¦   ¦   bootstrap-local.properties
 ¦       ¦   ¦   bootstrap.properties
 ¦       ¦   ¦   
 ¦       ¦   +---com
@@ -319,6 +318,7 @@ C:.
 ¦                           
 +---member-service
 ¦   ¦   .gitignore
+¦   ¦   member-service.iml
 ¦   ¦   pom.xml
 ¦   ¦   
 ¦   +---src
@@ -384,72 +384,67 @@ C:.
 ¦                           inputFiles.lst
 ¦                           
 +---notification-service
-¦   ¦   .gitignore
-¦   ¦   pom.xml
-¦   ¦   
-¦   +---src
-¦   ¦   +---main
-¦   ¦       +---java
-¦   ¦       ¦   +---com
-¦   ¦       ¦       +---microservice
-¦   ¦       ¦           +---notification
-¦   ¦       ¦               ¦   NotificationServiceApplication.java
-¦   ¦       ¦               ¦   
-¦   ¦       ¦               +---config
-¦   ¦       ¦               ¦       RabbitMQConfig.java
-¦   ¦       ¦               ¦       
-¦   ¦       ¦               +---dto
-¦   ¦       ¦               ¦       ClaimCreatedEvent.java
-¦   ¦       ¦               ¦       ClaimStatusChangedEvent.java
-¦   ¦       ¦               ¦       
-¦   ¦       ¦               +---listener
-¦   ¦       ¦               ¦       ClaimEventListener.java
-¦   ¦       ¦               ¦       
-¦   ¦       ¦               +---service
-¦   ¦       ¦                       NotificationService.java
-¦   ¦       ¦                       
-¦   ¦       +---resources
-¦   ¦               bootstrap.properties
-¦   ¦               
-¦   +---target
-¦       ¦   notification-service-1.0.0.jar
-¦       ¦   notification-service-1.0.0.jar.original
-¦       ¦   
-¦       +---classes
-¦       ¦   ¦   bootstrap.properties
-¦       ¦   ¦   
-¦       ¦   +---com
-¦       ¦       +---microservice
-¦       ¦           +---notification
-¦       ¦               ¦   NotificationServiceApplication.class
-¦       ¦               ¦   
-¦       ¦               +---config
-¦       ¦               ¦       RabbitMQConfig.class
-¦       ¦               ¦       
-¦       ¦               +---dto
-¦       ¦               ¦       ClaimCreatedEvent.class
-¦       ¦               ¦       ClaimStatusChangedEvent.class
-¦       ¦               ¦       
-¦       ¦               +---listener
-¦       ¦               ¦       ClaimEventListener.class
-¦       ¦               ¦       
-¦       ¦               +---service
-¦       ¦                       NotificationService.class
-¦       ¦                       
-¦       +---generated-sources
-¦       ¦   +---annotations
-¦       +---maven-archiver
-¦       ¦       pom.properties
-¦       ¦       
-¦       +---maven-status
-¦           +---maven-compiler-plugin
-¦               +---compile
-¦                   +---default-compile
-¦                           createdFiles.lst
-¦                           inputFiles.lst
-¦                           
-+---uploads
-        463ee0d3-7a4a-4f3d-8360-20627869c6bc_test.txt
-        6279abfa-e4d2-453a-99b7-9498c21439e0_gateway-test.txt
-        e2659d36-2585-4365-8726-6948b23eb687_claim-document.pdf
-        
+    ¦   .gitignore
+    ¦   pom.xml
+    ¦   
+    +---src
+    ¦   +---main
+    ¦       +---java
+    ¦       ¦   +---com
+    ¦       ¦       +---microservice
+    ¦       ¦           +---notification
+    ¦       ¦               ¦   NotificationServiceApplication.java
+    ¦       ¦               ¦   
+    ¦       ¦               +---config
+    ¦       ¦               ¦       RabbitMQConfig.java
+    ¦       ¦               ¦       
+    ¦       ¦               +---dto
+    ¦       ¦               ¦       ClaimCreatedEvent.java
+    ¦       ¦               ¦       ClaimStatusChangedEvent.java
+    ¦       ¦               ¦       
+    ¦       ¦               +---listener
+    ¦       ¦               ¦       ClaimEventListener.java
+    ¦       ¦               ¦       
+    ¦       ¦               +---service
+    ¦       ¦                       NotificationService.java
+    ¦       ¦                       
+    ¦       +---resources
+    ¦               bootstrap.properties
+    ¦               
+    +---target
+        ¦   notification-service-1.0.0.jar
+        ¦   notification-service-1.0.0.jar.original
+        ¦   
+        +---classes
+        ¦   ¦   bootstrap.properties
+        ¦   ¦   
+        ¦   +---com
+        ¦       +---microservice
+        ¦           +---notification
+        ¦               ¦   NotificationServiceApplication.class
+        ¦               ¦   
+        ¦               +---config
+        ¦               ¦       RabbitMQConfig.class
+        ¦               ¦       
+        ¦               +---dto
+        ¦               ¦       ClaimCreatedEvent.class
+        ¦               ¦       ClaimStatusChangedEvent.class
+        ¦               ¦       
+        ¦               +---listener
+        ¦               ¦       ClaimEventListener.class
+        ¦               ¦       
+        ¦               +---service
+        ¦                       NotificationService.class
+        ¦                       
+        +---generated-sources
+        ¦   +---annotations
+        +---maven-archiver
+        ¦       pom.properties
+        ¦       
+        +---maven-status
+            +---maven-compiler-plugin
+                +---compile
+                    +---default-compile
+                            createdFiles.lst
+                            inputFiles.lst
+                            
