@@ -11,23 +11,29 @@
         <version>1.0.0</version>
     </parent>
 
-    <artifactId>api-gateway</artifactId>
+    <artifactId>security-service</artifactId>
     <version>1.0.0</version>
     <packaging>jar</packaging>
-    <name>API Gateway</name>
+    <name>Security Service</name>
 
     <dependencies>
-        <!-- Common Library - NUEVO -->
+        <!-- Common Library -->
         <dependency>
             <groupId>com.microservices</groupId>
             <artifactId>common-library</artifactId>
             <version>1.0.0</version>
         </dependency>
 
-        <!-- Spring Cloud Gateway -->
+        <!-- Spring Boot Web -->
         <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-gateway</artifactId>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <!-- Spring Security -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
         </dependency>
 
         <!-- Eureka Client -->
@@ -36,16 +42,29 @@
             <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
         </dependency>
 
-        <!-- Spring Cloud Config Client -->
+        <!-- Config Client -->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-config</artifactId>
         </dependency>
 
-        <!-- Spring Cloud Bootstrap (necesario para config client) -->
+        <!-- Bootstrap -->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-bootstrap</artifactId>
+        </dependency>
+
+        <!-- Lombok -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
+        </dependency>
+
+        <!-- Actuator -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
 
         <!-- Micrometer Tracing -->
@@ -60,14 +79,18 @@
             <artifactId>zipkin-reporter-brave</artifactId>
         </dependency>
 
+        <!-- Spring Boot Test -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-actuator</artifactId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
         </dependency>
+
+        <!-- Spring Security Test -->
         <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <scope>provided</scope>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-test</artifactId>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 

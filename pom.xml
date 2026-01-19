@@ -34,6 +34,8 @@
         <module>config-service</module>
         <module>notification-service</module>
         <module>document-service</module>
+        <module>security-service</module>
+        <module>common-library</module>
     </modules>
 
     <dependencyManagement>
