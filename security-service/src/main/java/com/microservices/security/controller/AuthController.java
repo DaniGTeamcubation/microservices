@@ -1,5 +1,6 @@
 package com.microservices.security.controller;
 
+import com.microservices.common.dto.ErrorResponse;
 import com.microservices.security.dto.LoginRequest;
 import com.microservices.security.dto.LoginResponse;
 import com.microservices.security.service.AuthService;
@@ -25,17 +26,23 @@ public class AuthController {
      * Login endpoint - returns JWT token
      * POST /auth/login
      * Body: { "username": "admin", "password": "admin" }
+     *
+     * @param loginRequest credentials
+     * @return LoginResponse with JWT token or ErrorResponse
      */
     @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestBody LoginRequest loginRequest) {
+    public ResponseEntity<Object> login(@RequestBody LoginRequest loginRequest) {
         log.info("Login request received for user: {}", loginRequest.getUsername());
 
         Optional<LoginResponse> response = authService.login(loginRequest);
 
         if (response.isEmpty()) {
             log.warn("Invalid credentials for user: {}", loginRequest.getUsername());
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
-                    .body("Invalid username or password");
+            ErrorResponse error = new ErrorResponse(
+                    "Invalid username or password",
+                    HttpStatus.UNAUTHORIZED.value()
+            );
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(error);
         }
 
         log.info("Login successful for user: {}", loginRequest.getUsername());

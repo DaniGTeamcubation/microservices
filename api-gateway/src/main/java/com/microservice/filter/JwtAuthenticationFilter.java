@@ -1,6 +1,6 @@
 package com.microservice.filter;
 
-import com.microservice.util.JWT;
+import com.microservice.util.JwtUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cloud.gateway.filter.GatewayFilterChain;
 import org.springframework.cloud.gateway.filter.GlobalFilter;
@@ -19,7 +19,7 @@ import java.util.List;
 @Slf4j
 public class JwtAuthenticationFilter implements GlobalFilter, Ordered {
 
-    private final JWT jwtUtil;
+    private final JwtUtil jwtUtil;
 
     private static final List<String> PUBLIC_PATHS = List.of(
             "/auth/login",
@@ -27,7 +27,7 @@ public class JwtAuthenticationFilter implements GlobalFilter, Ordered {
             "/actuator"
     );
 
-    public JwtAuthenticationFilter(JWT jwtUtil) {
+    public JwtAuthenticationFilter(JwtUtil jwtUtil) {
         this.jwtUtil = jwtUtil;
     }
 
