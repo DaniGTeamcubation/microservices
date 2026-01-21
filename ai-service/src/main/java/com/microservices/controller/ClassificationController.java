@@ -40,14 +40,4 @@ public class ClassificationController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    @GetMapping("/clasificacion/document/{documentId}")
-    public ResponseEntity<ClassificationResponse> getClassificationByDocumentId(
-            @PathVariable Long documentId) {
-
-        log.info("Retrieving classification for document ID: {}", documentId);
-
-        return classificationService.getClassificationByDocumentId(documentId)
-                .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
-    }
 }

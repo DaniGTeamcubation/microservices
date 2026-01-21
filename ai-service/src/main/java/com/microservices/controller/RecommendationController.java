@@ -33,15 +33,4 @@ public class RecommendationController {
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
-    @GetMapping("/member/{memberId}")
-    public ResponseEntity<List<RecommendationResponse>> getRecommendationHistory(
-            @PathVariable Long memberId) {
-
-        log.info("Retrieving recommendation history for member: {}", memberId);
-
-        List<RecommendationResponse> history =
-                recommendationService.getRecommendationHistory(memberId);
-
-        return ResponseEntity.ok(history);
-    }
 }
