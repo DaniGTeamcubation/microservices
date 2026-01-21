@@ -1,6 +1,6 @@
-package com.microservices.ai.repository;
+package com.microservices.repository;
 
-import com.microservices.ai.entity.DocumentClassification;
+import com.microservices.entity.DocumentClassification;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

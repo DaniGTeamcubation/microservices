@@ -1,4 +1,4 @@
-package com.microservices.ai.dto;
+package com.microservices.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

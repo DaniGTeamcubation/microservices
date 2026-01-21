@@ -1,4 +1,4 @@
-package com.microservices.ai.provider;
+package com.microservices.provider;
 
 public interface AIProvider {
 

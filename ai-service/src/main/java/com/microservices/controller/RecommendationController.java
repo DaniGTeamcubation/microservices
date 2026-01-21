@@ -1,8 +1,8 @@
-package com.microservices.ai.controller;
+package com.microservices.controller;
 
-import com.microservices.ai.dto.RecommendationRequest;
-import com.microservices.ai.dto.RecommendationResponse;
-import com.microservices.ai.service.PlanRecommendationService;
+import com.microservices.dto.RecommendationRequest;
+import com.microservices.dto.RecommendationResponse;
+import com.microservices.service.PlanRecommendationService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

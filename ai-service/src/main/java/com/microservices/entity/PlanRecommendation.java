@@ -1,4 +1,4 @@
-package com.microservices.ai.entity;
+package com.microservices.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

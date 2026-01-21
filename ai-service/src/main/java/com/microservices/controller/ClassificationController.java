@@ -1,7 +1,7 @@
-package com.microservices.ai.controller;
+package com.microservices.controller;
 
-import com.microservices.ai.dto.ClassificationResponse;
-import com.microservices.ai.service.DocumentClassificationService;
+import com.microservices.dto.ClassificationResponse;
+import com.microservices.service.DocumentClassificationService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
