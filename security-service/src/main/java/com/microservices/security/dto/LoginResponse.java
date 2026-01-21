@@ -1,4 +1,4 @@
-package com.microservices.ai.security.dto;
+package com.microservices.security.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

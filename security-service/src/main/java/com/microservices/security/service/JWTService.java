@@ -1,6 +1,6 @@
-package com.microservices.ai.security.service;
+package com.microservices.security.service;
 
-import com.microservices.ai.common.jwt.JwtTokenUtil;
+import com.microservices.common.jwt.JwtTokenUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;

@@ -1,9 +1,9 @@
-package com.microservices.ai.security.controller;
+package com.microservices.security.controller;
 
-import com.microservices.ai.common.dto.ErrorResponse;
-import com.microservices.ai.security.dto.LoginRequest;
-import com.microservices.ai.security.dto.LoginResponse;
-import com.microservices.ai.security.service.AuthService;
+import com.microservices.common.dto.ErrorResponse;
+import com.microservices.security.dto.LoginRequest;
+import com.microservices.security.dto.LoginResponse;
+import com.microservices.security.service.AuthService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

@@ -1,4 +1,4 @@
-package com.microservices.ai.security.config;
+package com.microservices.security.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

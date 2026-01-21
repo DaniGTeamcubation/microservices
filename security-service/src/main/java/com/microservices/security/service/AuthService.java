@@ -1,8 +1,8 @@
-package com.microservices.ai.security.service;
+package com.microservices.security.service;
 
-import com.microservices.ai.security.dto.LoginRequest;
-import com.microservices.ai.security.dto.LoginResponse;
-import com.microservices.ai.security.model.User;
+import com.microservices.security.dto.LoginRequest;
+import com.microservices.security.dto.LoginResponse;
+import com.microservices.security.model.User;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 

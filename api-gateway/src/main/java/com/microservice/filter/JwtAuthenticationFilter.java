@@ -82,18 +82,10 @@ public class JwtAuthenticationFilter implements GlobalFilter, Ordered {
         return chain.filter(exchange.mutate().request(modifiedRequest).build());
     }
 
-    /**
-     * Check if path is public (doesn't require authentication)
-     */
     private boolean isPublicPath(String path) {
         return PUBLIC_PATHS.stream().anyMatch(path::startsWith);
     }
 
-    /**
-     * Check role-based access control
-     * ADMIN: Can do everything (GET, POST, PUT, DELETE)
-     * USER: Can only read (GET)
-     */
     private boolean hasAccess(String method, String role) {
         if ("ADMIN".equals(role)) {
             return true;
@@ -106,9 +98,6 @@ public class JwtAuthenticationFilter implements GlobalFilter, Ordered {
         return false;
     }
 
-    /**
-     * Handle authentication/authorization errors
-     */
     private Mono<Void> onError(ServerWebExchange exchange, String message, HttpStatus status) {
         ServerHttpResponse response = exchange.getResponse();
         response.setStatusCode(status);

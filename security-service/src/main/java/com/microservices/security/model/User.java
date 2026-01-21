@@ -1,4 +1,4 @@
-package com.microservices.ai.security.model;
+package com.microservices.security.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

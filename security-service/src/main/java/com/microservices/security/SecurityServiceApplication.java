@@ -1,4 +1,4 @@
-package com.microservices.ai;
+package com.microservices.security;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
